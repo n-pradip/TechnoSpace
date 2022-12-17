@@ -36,9 +36,5 @@ class BlogpostModel(models.Model):
         return self.title
 
 
-class SubscribersModel(models.Model):
-    subscriber_mail = models.CharField(max_length=128)
 
-    def __str__(self):
-        return self.subscriber_mail
 

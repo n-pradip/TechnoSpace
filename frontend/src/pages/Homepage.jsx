@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Header from '../components/Header'
 import CardPrimary from '../components/CardPrimary'
 import TitlePrimary from '../components/TitlePrimary'
 import Footer from '../components/Footer'
-import useBlogpostsData from '../hooks/useBlogpostsData'
+// import useBlogpostsData from '../hooks/useBlogpostsData'
 import HeroSection from '../components/HeroSection'
+import { BlogpostsContext } from '../context/BlogpostProvider'
 
 const Homepage = () => {
-  const { data } = useBlogpostsData()
+  const { data } = useContext(BlogpostsContext)
   console.log(111, data)
   // data.map((post)=>{console.log(post.title)})
 
@@ -23,9 +24,7 @@ const Homepage = () => {
         {
           data?.map((post,index) => {
             return (
-              <CardPrimary key={index} id={post.id} slug={post.slug} title={post.title} author={post.author} description={`${post.content.slice(0,150)}...`} date={post.created_at.slice(0, 10)} time={post.created_at.slice(11, 19)}/>
-              // <CardPrimary key={index} title={1} author={11} description={1} date={1} time={1} url={1} />
-
+              <CardPrimary key={index} id={post.id} title={post.title} author={post.author} description={`${post.content.slice(0,150)}...`} date={post.created_at.slice(0, 10)} time={post.created_at.slice(11, 19)}/>
             )
           })
         }

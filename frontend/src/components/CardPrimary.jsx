@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import BlogpostImagePrimary from '../images/water-lilies-white-pond-leaves-wallpaper.jpg'
 import UserAvatar from '../images/user_avatar.jpg'
-import { BsFillBookmarkFill, BsFillBookmarkCheckFill } from "react-icons/bs";
+// import { BsFillBookmarkFill, BsFillBookmarkCheckFill } from "react-icons/bs";
 
 
 // Card porps take id, title, author, content, date, time as parameters
@@ -13,7 +13,7 @@ const CardPrimary = (props) => {
             <div className="" style={{ 'backgroundColor': 'rgb(245 245 245)' }}>
                 <div className="lg:grid lg:grid-cols-3 lg:items-start lg:gap-6 lg:space-y-0">
 
-                    <Link to={`blogpost/${props.slug}`}>
+                    <Link to={`blogpost/${props.id}`}>
                         <div className="overflow-hidden">
                             <img className="h-52 w-full object-cover" src={BlogpostImagePrimary} alt="blogpost_image" />
                         </div>
@@ -22,7 +22,7 @@ const CardPrimary = (props) => {
                     <div className="sm:col-span-2 py-3 px-3">
                         <div>
                             <span className='font-bold text-md text-blue-800'>{props.category}</span>
-                            <Link to={`blogpost/${props.slug}`} className="group">
+                            <Link to={`blogpost/${props.id}`} className="group">
                                 <h4 className="text-lg leading-6 font-semibold font-sans text-skin-inverted group-hover:text-skin-primary mt-2">{props.title}</h4>
                             </Link>
 

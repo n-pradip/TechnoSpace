@@ -11,13 +11,7 @@ import useBlogpostsData from '../hooks/useBlogpostsData';
 const Blogpost = () => {
   const { slug } = useParams();
   const { data, isLoading } = useBlogpostsData()
-  // useEffect(() => {
-  //   setTitle(data?.title)
-  //   setPrice(data?.price)
-  //   setSlug(data?.slug)
-  // }, [data])
-  console.log(data)
-  // const post = data.filter(slug = data.slug)
+
 
   return (
     <div>
