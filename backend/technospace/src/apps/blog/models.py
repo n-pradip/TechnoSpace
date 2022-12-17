@@ -1,7 +1,8 @@
 from django.db import models
+from src.apps.blog.utils.slug_generator import slug_generator
 
 
-class Category(models.Model):
+class CategoryModel(models.Model):
     category_name = models.CharField(max_length=128)
 
     def __str__(self):
@@ -9,15 +10,16 @@ class Category(models.Model):
 
 
 STATUS = (
-        ("Published", "Published"),
-        ("Draft", "Draft"),
-    )
+    ("Published", "Published"),
+    ("Draft", "Draft"),
+)
 
 
 class BlogpostModel(models.Model):
-    post_title = models.CharField(max_length=128)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    slug = models.SlugField(max_length=128)
+    title = models.CharField(max_length=128, null=False, default="", blank=False)
+    author = models.CharField(max_length=128)
+    category = models.ForeignKey(CategoryModel, on_delete=models.CASCADE)
+    slug = models.SlugField(max_length=128, null=True)
     image = models.ImageField(upload_to="blog/images", null=True, blank=True)
     content = models.TextField(max_length=10000)
     featured = models.BooleanField(default=False)
@@ -25,6 +27,18 @@ class BlogpostModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
+    def save(self, *args, **kwargs):
+        while BlogpostModel.objects.filter(slug=self.slug).exists() or self.slug is None:
+            self.slug = slug_generator(self.title)
+        super(BlogpostModel, self).save(*args, **kwargs)
+
     def __str__(self):
-        return self.post_title
-    
+        return self.title
+
+
+class SubscribersModel(models.Model):
+    subscriber_mail = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.subscriber_mail
+

@@ -10,10 +10,10 @@ SECRET_KEY = config('SECRET_KEY', cast=str)
 
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = config("ALLOWED_HOSTS", default="127.0.0.1", cast=Csv())
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='http://127.0.0.1', cast=Csv())
 
 CORS_ALLOWED_ORIGINS = config('CORS_ALLOWED_ORIGINS', cast=Csv())
-
+# CORS_ALLOW_ALL_ORIGINS = True
 
 # Application definition
 
@@ -29,6 +29,8 @@ INBUILT_APPS = [
 
 THIRDPARTY_APPS = [
     'rest_framework',
+    'corsheaders',
+    'django_filters',
 ]
 
 CUSTOM_APPS = [
@@ -40,6 +42,7 @@ INSTALLED_APPS = INBUILT_APPS + THIRDPARTY_APPS + CUSTOM_APPS
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

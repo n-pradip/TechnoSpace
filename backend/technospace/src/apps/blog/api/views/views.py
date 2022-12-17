@@ -1,11 +1,16 @@
 from rest_framework import viewsets
-
-from src.apps.blog.api.serializers.serializers import BlogpostSerializer
-from src.apps.blog.models import BlogpostModel
+from rest_framework.filters import SearchFilter
+from src.apps.blog.api.serializers.serializers import BlogpostSerializer, CategorySerializer
+from src.apps.blog.models import BlogpostModel, CategoryModel
 
 
 class BlogpostView(viewsets.ModelViewSet):
     queryset = BlogpostModel.objects.all()
     serializer_class = BlogpostSerializer
-    # filterset_fields = ['post_title', 'id']
+    filter_backends = [SearchFilter]
+    search_fields = ['title']
 
+
+class CategoryView(viewsets.ModelViewSet):
+    queryset = CategoryModel.objects.all()
+    serializer_class = CategorySerializer
