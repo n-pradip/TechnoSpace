@@ -9,6 +9,8 @@ import Blogpost from "./pages/Blogpost";
 import Faq from "./pages/Faq";
 import Search from "./pages/Search";
 import Contact from "./pages/Contact";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const App = () => {
   
@@ -21,10 +23,12 @@ const App = () => {
         <Route path="/bookmarks" element={<Bookmarks />} />
         <Route path="/blogpost/:id" element={<Blogpost />} />
         <Route path="/faqs" element={<Faq />} />
-        <Route path="/search" element={<Search />} />
+        <Route path="/search/:text" element={<Search />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="*" element={<Error />} />
       </Routes>
+
+      <ToastContainer autoClose={2000}/>
     </div>
   );
 };

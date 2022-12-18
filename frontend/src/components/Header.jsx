@@ -1,12 +1,19 @@
 import React, { useState } from 'react'
 import LogoImage from '../images/techno_space_logo.png'
 import MobileMenuLinks from './MobileMenuLinks';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { HiMenu } from "react-icons/hi";
 import '../styles/component/Header.css'
 
 const Header = () => {
+    const navigate = useNavigate();
     const [mobileMenu, setMobileMenu] = useState(false);
+    const [searchText, setSearchText] = useState('')
+    const handleSubmit = (e) =>{
+        e.preventDefault()
+        navigate(`/search/${searchText}`)
+    }
+
     return (
         <div className='w-full shadow-md'>
             <nav className="header_container container mx-auto">
@@ -17,12 +24,12 @@ const Header = () => {
                             <p className="font-bold text-md items-base my-auto">Technospace(v2)</p>
                         </Link>
                     </div>
-                    <div className="box2 px-5 py-3 order-3 lg:order-2 col-span-2 lg:col-span-1 w-full flex items-center" placeholder='Enter your keywords here ...'>
-                        <input type="text" className="search_bar w-full px-3 py-2" placeholder='Enter keyword here ...' />
-                        <button type="submit" className="search-button px-3 py-2 ">
+                    <form onSubmit={handleSubmit} className="box2 px-5 py-3 order-3 lg:order-2 col-span-2 lg:col-span-1 w-full flex items-center" placeholder='Enter your keywords here ...'>
+                        <input onChange={(e)=>{setSearchText(e.target.value)}} type="text" className="search_bar w-full px-3 py-2" placeholder='Enter keyword here ...' />
+                        <button to={`/search/${searchText}`} type="submit" className="search-button px-3 py-2 ">
                             Search
                         </button>
-                    </div>
+                    </form>
                     <div className="box3 order-2 px-5 py-3 lg:order-3 w-full flex justify-end items-center">
                         <div className="links hidden lg:block">
                             <ul className="grid grid-flow-col gap-5">
