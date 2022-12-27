@@ -1,3 +1,4 @@
+from datetime import timedelta
 from pathlib import Path
 
 from decouple import config, Csv
@@ -31,10 +32,12 @@ THIRDPARTY_APPS = [
     'rest_framework',
     'corsheaders',
     'django_filters',
+    'rest_framework_simplejwt',
 ]
 
 CUSTOM_APPS = [
     'src.apps.blog',
+    'src.apps.account',
 ]
 
 INSTALLED_APPS = INBUILT_APPS + THIRDPARTY_APPS + CUSTOM_APPS
@@ -133,3 +136,47 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Email configuration
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = config('EMAIL_HOST', cast=str)
+EMAIL_PORT = config('EMAIL_PORT', cast=int)
+EMAIL_HOST_USER = config('EMAIL_HOST_USER', cast=str)
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', cast=str)
+EMAIL_USE_TLS = True
+
+
+# Rest framework
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ],
+
+    'DEFAULT_FILTER_BACKENDS': ['django_filters.rest_framework.DjangoFilterBackend'],
+
+}
+
+AUTH_USER_MODEL = 'account.User'
+
+
+# JWT settings
+SIMPLE_JWT = {
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=20),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+    'ROTATE_REFRESH_TOKENS': True,
+    'BLACKLIST_AFTER_ROTATION': True,
+    'UPDATE_LAST_LOGIN': True,
+
+    'AUTH_HEADER_TYPES': ('Bearer',),
+    'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',
+    'USER_ID_FIELD': 'id',
+    'USER_ID_CLAIM': 'user_id',
+    'USER_AUTHENTICATION_RULE': 'rest_framework_simplejwt.authentication.default_user_authentication_rule',
+
+    'AUTH_TOKEN_CLASSES': ('rest_framework_simplejwt.tokens.AccessToken',),
+    'TOKEN_TYPE_CLAIM': 'token_type',
+    'TOKEN_USER_CLASS': 'rest_framework_simplejwt.models.TokenUser',
+
+    'JTI_CLAIM': 'jti',
+}

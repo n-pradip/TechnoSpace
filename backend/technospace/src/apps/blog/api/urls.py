@@ -3,7 +3,7 @@ from django.urls.conf import path
 from src.apps.blog.api.views.views import BlogpostView,CategoryView, SubscriptionCreateAPIView, ContactCreateAPIView
 
 router = DefaultRouter()
-router.register(r'allposts', BlogpostView, basename='all_blogposts')
+router.register(r'posts', BlogpostView, basename='all_blogposts')
 router.register(r'category', CategoryView, basename='categories')
 
 urlpatterns = [
