@@ -1,8 +1,25 @@
-import React from 'react'
+import { React, useState } from 'react'
+import { useMutation } from 'react-query'
 import { Link } from 'react-router-dom'
 import Logo from '../images/techno_space_logo.png'
-
 const Login = () => {
+    const [email, setemail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const [login, { status }] = useMutation(async (inputs) => {
+        const response = await fetch('/api/login', {
+            method: 'POST',
+            body: JSON.stringify(inputs),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        return response.json();
+    });
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        login({ email, password });
+    };
     return (
         <div>
             <section className="relative flex flex-wrap lg:h-screen lg:items-center">
@@ -24,13 +41,14 @@ const Login = () => {
                         </p>
                     </div>
 
-                    <form action="" className="mx-auto mt-8 mb-0 max-w-md space-y-4">
+                    <form action="" onSubmit={handleSubmit} className="mx-auto mt-8 mb-0 max-w-md space-y-4">
                         <div>
                             <label for="email" className="sr-only">Email</label>
 
                             <div className="relative">
                                 <input
                                     type="email"
+                                    onChange={(event) => { setemail(event.target.value) }}
                                     className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                                     placeholder="Enter email" />
                             </div>
@@ -41,6 +59,7 @@ const Login = () => {
                             <div className="relative">
                                 <input
                                     type="password"
+                                    onChange={(event) => { setPassword(event.target.value) }}
                                     className="w-full rounded-lg border-gray-200 p-4 pr-12 text-sm shadow-sm"
                                     placeholder="Enter password" />
 

@@ -3,7 +3,8 @@ import {api} from "../api/rootApi";
 
 
 const getBlogposts = async () => {
-    const response = await api.get("allposts")
+    const response = await api.get("blog/posts")
+    console.log(111,response)
     return response.data;
 
 }

@@ -27,13 +27,13 @@ const Blogpost = () => {
 
               <div className="right_sidebar_container p-5">
                 <AuthorInfo />
-                <TitleSecondary />
-                <CardSecondary />
-                <CardSecondary />
+                <TitleSecondary text="Similar posts"/>
+                {/* <CardSecondary />
+                <CardSecondary /> */}
 
                 <TitleSecondary text="More from the author" />
-                <CardSecondary />
-                <CardSecondary />
+                {/* <CardSecondary />
+                <CardSecondary /> */}
 
               </div>
             </div>

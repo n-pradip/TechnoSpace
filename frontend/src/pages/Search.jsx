@@ -12,7 +12,7 @@ const Search = () => {
     const { text } = useParams()
 
     const searchBlogposts = async (text) => {
-        const response = await api.get(`allposts/?search=${text}`)
+        const response = await api.get(`blog/posts/?search=${text}`)
         return response.data;
     }
     const { data, isLoading } = useQuery(['blogpost_search', text], () => searchBlogposts(text))

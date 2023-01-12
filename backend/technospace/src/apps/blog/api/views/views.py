@@ -11,8 +11,8 @@ from src.apps.blog.models import BlogpostModel, CategoryModel, SubscriptionModel
 class BlogpostView(viewsets.ModelViewSet):
     queryset = BlogpostModel.objects.all()
     serializer_class = BlogpostSerializer
-    authentication_classes = [JWTAuthentication]
-    permission_classes = [IsAuthenticated]
+    # authentication_classes = [JWTAuthentication]
+    # permission_classes = [IsAuthenticated]
     filter_backends = [SearchFilter]
     search_fields = ['title']
 
