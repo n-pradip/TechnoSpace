@@ -23,10 +23,10 @@ const CardPrimary = (props) => {
                         <div>
                             <span className='font-bold text-md text-blue-800'>{props.category}</span>
                             <Link to={`blogpost/${props.id}`} className="group">
-                                <h4 className="text-lg leading-6 font-semibold font-sans text-skin-inverted group-hover:text-skin-primary mt-2">{props.title}</h4>
+                                <h4 className="text-[20px] leading-7 font-semibold font-sans text-skin-inverted group-hover:text-skin-primary mt-2">{props.title}</h4>
                             </Link>
 
-                            <p className="mt-1 text-sx font-normal text-skin-base leading-5">
+                            <p className="mt-1 text-sm font-normal text-skin-base leading-5">
                                 {props.description}
                             </p>
 

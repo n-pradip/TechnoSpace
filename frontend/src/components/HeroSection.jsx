@@ -39,7 +39,7 @@ const HeroSection = () => {
                             <p className="pt-5 text-lg font-bold text-center text-[#07174D]">
                                 Subscribe to Technospace
                             </p>
-                            <p className="text-md text-gray-500 text-center">
+                            <p className="text-sm text-gray-500 text-center">
                                 Subscribe Technospace Blogs to get latest blogpost of your interest and from your favourite author.
                             </p>
                             <div className="justify-center mx-auto mt-4 max-w-xl">

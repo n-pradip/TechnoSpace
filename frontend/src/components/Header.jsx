@@ -15,18 +15,18 @@ const Header = () => {
     }
 
     return (
-        <div className='w-full shadow-md'>
+        <div className='w-full'>
             <nav className="header_container container mx-auto">
-                <div className="grid grid-cols-2 lg:grid-cols-3">
+                <div className="grid grid-cols-2 lg:grid-cols-3 py-1">
                     <div className="box1 px-5 py-3 order-1 w-full flex text-left items-center">
                         <Link to='/' className="brand_name flex">
                             <img src={LogoImage} alt="" width="30px" height="auto" />
                             <p className="font-bold text-md items-base my-auto">Technospace(v2)</p>
                         </Link>
                     </div>
-                    <form onSubmit={handleSubmit} className="box2 px-5 py-3 order-3 lg:order-2 col-span-2 lg:col-span-1 w-full flex items-center" placeholder='Enter your keywords here ...'>
-                        <input onChange={(e)=>{setSearchText(e.target.value)}} type="text" className="search_bar w-full px-3 py-2" placeholder='Enter keyword here ...' />
-                        <button to={`/search/${searchText}`} type="submit" className="search-button px-3 py-2 ">
+                    <form onSubmit={handleSubmit} className="box2 px-5 py-3 order-3 lg:order-2 col-span-2 lg:col-span-1 w-full flex items-center">
+                        <input onChange={(e)=>{setSearchText(e.target.value)}} type="text" className="search_bar w-full px-3 py-[5px] text-sm" placeholder='Enter keyword here ...' />
+                        <button to={`/search/${searchText}`} type="submit" className="search-button px-3 py-[5px] text-sm">
                             Search
                         </button>
                     </form>
