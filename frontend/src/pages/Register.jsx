@@ -7,7 +7,7 @@ const Register = () => {
         <div>
             <section className="relative flex flex-wrap lg:h-screen lg:items-center">
                 <div className="w-full px-4 py-12 sm:px-6 sm:py-16 lg:w-1/2 lg:px-8 lg:py-8">
-                <div className="home_reference_section my-5">
+                    <div className="home_reference_section my-5">
                         <Link to="/" className='cursor-pointer'>
                             <figure className='flex justify-center items-center'>
                                 <img src={Logo} alt="Logo" className='w-20' />
@@ -19,12 +19,23 @@ const Register = () => {
                     <div className="mx-auto max-w-lg text-center">
                         <h1 className="text-2xl font-bold sm:text-3xl">Get connected with Technospace Blogs!</h1>
 
-                        <p className="mt-4 text-gray-500">
+                        {/* <p className="mt-4 text-gray-500">
                             This is the techo space for modern tech world. Stay uptodate with your interests and hobby as well as important events around you.
-                        </p>
+                        </p> */}
                     </div>
 
                     <form action="" className="mx-auto mt-8 mb-0 max-w-md space-y-4">
+                        <div>
+                            <label for="full_name" className="sr-only">FullName</label>
+
+                            <div className="relative">
+                                <input
+                                    type="text"
+                                    className="w-full rounded border-gray-200 p-4 pr-12 text-sm shadow-sm"
+                                    placeholder="Enter fullname" />
+                            </div>
+                        </div>
+
                         <div>
                             <label for="email" className="sr-only">Email</label>
 
