@@ -18,7 +18,7 @@ const Homepage = () => {
 
       </div>
       <div className='container mx-auto px-20 my-[150px] sm:my-[120px] lg:my-[100px]'>
-        <TitlePrimary title="Recent posts" />
+        <TitlePrimary title="Popular posts" />
         {
           isLoading ?
             <p>Loading ...</p> :
